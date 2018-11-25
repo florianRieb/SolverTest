@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solvertest
+  labels:
+    app:solvertest
+  spec:
+    replication: 1
+    selector:
+      matchLabels:
+        app: solvertest
+    template:
+      metadata:
+        labels:
+          app: solvertest
+      spec:
+        containers:
+          - name: solvertest
+            image: riedbt/solvertest:0.1
+            imagePullPolicy: Always
+
