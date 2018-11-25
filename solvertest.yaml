@@ -3,19 +3,21 @@ kind: Deployment
 metadata:
   name: solvertest
   labels:
-    app:solvertest
-  spec:
-    replication: 1
-    selector:
-      matchLabels:
+    app: solvertest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
         app: solvertest
-    template:
-      metadata:
-        labels:
-          app: solvertest
-      spec:
-        containers:
-          - name: solvertest
-            image: riedbt/solvertest:0.1
-            imagePullPolicy: Always
-
+  template:
+    metadata:
+      labels:
+        app: solvertest
+    spec:
+      containers:
+      - name: enva
+        image: riedbt/solvertest:0.3
+        imagePullPolicy: Always
+        env:
+        - name: JVM_OPTS
+          value: "-XX:+UnlockExperimentalVMOptions -Xms7G -Xmx8G"
